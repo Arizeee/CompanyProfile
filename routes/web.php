@@ -34,6 +34,7 @@ Route::get('/post/{slug}', [FrontArticleController::class, 'show']);
 Route::get('/articles', [FrontArticleController::class, 'index']);
 Route::get('/category/{slug}', [FrontCategoryController::class, 'index']);
 
+
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::resource('/categories', CategoryController::class)->only([
@@ -47,4 +48,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

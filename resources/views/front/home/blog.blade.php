@@ -5,55 +5,76 @@
 
 
 @section('content')
-
-<h1 class="text-3xl font-bold underline text-blue-600">
-    Hello world!
-  </h1>
-        <!-- Page content-->
-        <div class="container">
-            <div class="row">
-                <!-- Blog entries-->
-                <div class="col-lg-8">
-                    <!-- Featured blog post-->
-                    <div class="card mb-4 shadow-sm">
-                        <a href="{{ url('post/'.$latest_post->slug) }}">
-                            <img class="card-img-top featured-img" src="{{ asset('storage/back/'.$latest_post->img) }}" alt="..." />
-                        </a>
-                        <div class="card-body">
-                            <div class="small text-muted">{{ $latest_post->created_at->format('d-m-Y') }} | {{ $latest_post->User->name }} | <a href="{{ url('category/'.$latest_post->Category->slug) }}">{{ $latest_post->Category->name }}</a></div>
-                            <h2 class="card-title">{{ $latest_post->title }}</h2>
-                            <p class="card-text">{{ Str::limit(strip_tags($latest_post->desc), 200, '...') }}</p>
-                            <a class="btn btn-primary" href="{{ url('post/'.$latest_post->slug) }}">Read more →</a>
-                        </div>
-                    </div>
-
-                    <!-- Nested row for non-featured blog posts-->
-                    <div class="row">
-                        @foreach ($article as $item)
-                        <div class="col-lg-6">
-                            <!-- Blog post-->
-                            <div class="card mb-4 shadow-sm">
-                                <a href="{{ url('post/'.$item->slug) }}"><img class="card-img-top post-img" src="{{ asset('storage/back/'.$item->img) }}" /></a>
-                                <div class="card-height card-body">
-                                    <div class="small text-muted">
-                                        {{ $item->created_at->format('d-m-Y') }}
-                                        <a href="{{ url('category/'.$item->Category->slug) }}">{{ $item->Category->name }}</a>
-                                    </div>
-                                    <h2 class="card-title h4">{{ $item->title }}</h2>
-                            <p class="card-text">{{ Str::limit(strip_tags($item->desc), 200, '...') }}</p>
-
-                                    <a class="btn btn-primary" href="{{ url('post/'.$item->slug) }}">Read more →</a>
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
-
-                    </div>
-                    <!-- Pagination-->
-                    <div class="pagination justify-content-center my-4">{{ $article->onEachSide(0)->links() }}</div>
-                </div>
-                <!-- Side widgets-->
-                @include('front/layout/side-widget')
+<section id="blog" class="blog_area pt-120">
+    <div class="container">
+        <div class="row justify-center">
+            <div class="w-full lg:w-1/2">
+                <div class="section_title text-center pb-6">
+                    <h5 class="sub_title">Blog</h5>
+                    <h4 class="main_title">From The Blog</h4>
+                </div> <!-- section title -->
             </div>
+        </div> <!-- row -->
+        @include('front/layout/side-widget')
+        <!-- Konten lain di sini -->
+        <div class="row justify-center lg:justify-start">
+            <!-- Loop untuk artikel -->
+            @foreach ($article as $item)
+            <div class="w-full md:w-8/12 lg:w-6/12 xl:w-4/12">
+                <!-- Blog post -->
+                <div class="single_blog mx-3 mt-8 rounded-xl bg-white transition-all duration-300 overflow-hidden hover:shadow-lg">
+                    <!-- Gambar blog -->
+                    <div class="blog_image">
+                        <img src="{{ asset('storage/back/'.$item->img) }}" alt="blog" class="w-64 h-48 object-cover" style="width: 405px; height: 362px;">
+                    </div>
+                    <!-- Konten blog -->
+                    <div class="blog_content p-4 md:p-5">
+                        <!-- Info penulis dan tanggal -->
+                        <ul class="blog_meta flex justify-between">
+                            <li class="text-body-color text-sm md:text-base">By: {{ $item->User->name }}</li>
+                            <li class="text-body-color text-sm md:text-base">{{ $item->created_at->format('d-m-Y') }}</li>
+                        </ul>
+                        <!-- Judul blog -->
+                        <h3 class="blog_title"><a href="#" class="truncate overflow-ellipsis">{{ $item->title }}</a></h3>
+                        <!-- Tombol Read More -->
+                        <a href="{{ url('post/'.$item->slug) }}" class="more_btn">Read More</a>
+                    </div>
+                </div> <!-- single_blog -->
+            </div>
+            @endforeach
+        </div> <!-- row -->
+
+        <!-- Pagination -->
+        <div class="flex justify-center mb-4 mt-10">
+            <nav class="inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                <!-- Previous button -->
+                @if ($article->previousPageUrl())
+                <a href="{{ $article->previousPageUrl() }}" rel="prev" class="px-3 py-2 bg-white border border-gray-300 text-sm font-medium text-gray-500 rounded-l-md hover:bg-gray-50">
+                    Previous
+                </a>
+                @endif
+
+                <!-- Numbered page links -->
+                @foreach ($article->getUrlRange(1, $article->lastPage()) as $page => $url)
+                @if ($page == $article->currentPage())
+                <span aria-current="page" class="px-3 py-2 bg-theme-color border border-theme-color text-sm font-medium text-white rounded-md">{{ $page }}</span>
+                @else
+                <a href="{{ $url }}" class="px-3 py-2 bg-white border border-gray-300 text-sm font-medium text-gray-500 hover:bg-gray-50">{{ $page }}</a>
+                @endif
+                @endforeach
+
+                <!-- Next button -->
+                @if ($article->nextPageUrl())
+                <a href="{{ $article->nextPageUrl() }}" rel="next" class="px-3 py-2 bg-white border border-gray-300 text-sm font-medium text-gray-500 rounded-r-md hover:bg-gray-50">
+                    Next
+                </a>
+                @endif
+            </nav>
         </div>
-        @endsection
+
+    </div> <!-- container -->
+
+
+
+</section> <!-- blog_area -->
+

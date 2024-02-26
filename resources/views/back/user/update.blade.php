@@ -12,7 +12,7 @@ aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <form action="{{ url('users/'.$item->id) }}" method="post">
                 @method('PUT')
                 @csrf
-        
+
                 <div class="mb-3">
                     <label for="name">Name</label>
                     <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $item->name) }}" >
@@ -22,7 +22,7 @@ aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         </div>
                     @enderror
                 </div>
-                <div class="mb-3">  
+                <div class="mb-3">
                     <label for="email">Email</label>
                     <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $item->email) }}" >
                     @error('email')
@@ -55,8 +55,8 @@ aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 </div>
             </form>
         </div>
-        
-        
+
+
 </div>
 </div>
 

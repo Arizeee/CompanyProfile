@@ -3,7 +3,7 @@
     height: 350px;
     object-fit: cover;
     border-radius: calc(0.24rem - 1px);
-    
+
 }
 
 .single-img{
@@ -17,7 +17,7 @@
     height: 350px;
     object-fit: cover;
     border-radius: calc(0.24rem - 1px);
-}   
+}
 
 .card-height{
     height: 300px;

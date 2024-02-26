@@ -69,7 +69,7 @@
                                                 Function</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="text-center">
+                                    <tbody class="text-center truncate overflow-ellipsis">
 
                                     </tbody>
                                 </table>

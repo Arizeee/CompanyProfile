@@ -33,7 +33,7 @@ class HomeController extends Controller
     {
         return view('front.home.blog', [
             'latest_post' => Article::with(['User', 'Category'])->latest()->first(),
-            'article' => Article::with(['User', 'Category'])->where('status', '1')->latest()->paginate(4),
+            'article' => Article::with(['User', 'Category'])->where('status', '1')->latest()->paginate(3),
             'categories' => Category::latest()->get(),
         ]);
     }

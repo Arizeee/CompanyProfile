@@ -13,13 +13,26 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+    <!--====== Animate CSS ======-->
+    <link rel="stylesheet" href="{{ asset('front/css/animate.css') }}">
+
+    <!--====== Slick CSS ======-->
+    <link rel="stylesheet" href="{{ asset('front/css/tiny-slider.css') }}">
+
+    <!--====== Line Icons CSS ======-->
+    <link rel="stylesheet" href="{{ asset('front/fonts/lineicons/font-css/LineIcons.css') }}">
+
+    <!--====== Tailwind CSS ======-->
+    <link rel="stylesheet" href="{{ asset('front/css/tailwindcss.css') }}">
+    @vite('resources/css/app.css')
+    {{-- @stack('css') --}}
+
     <!-- Scripts -->
-    @viteReactRefresh
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 </head>
-<body>
+<body class="overflow-hidden">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -71,7 +84,7 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> --}}
 
         <main class="py-4">
             @yield('content')

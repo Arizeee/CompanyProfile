@@ -10,7 +10,7 @@
             <div class="modal-body">
                 <form action="{{ url('users') }}" method="post">
                     @csrf
-            
+
                     <div class="mb-3">
                         <label for="name">Name</label>
                         <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required>
@@ -53,7 +53,7 @@
                     </div>
                 </form>
             </div>
-            
-            
+
+
     </div>
 </div>

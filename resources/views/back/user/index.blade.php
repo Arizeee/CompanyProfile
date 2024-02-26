@@ -13,7 +13,7 @@
         <div class="mt-3">
             @if (auth()->user()->role == 1)
             <button class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#modalCreate">Create</button>
-         
+
             @endif
             <!-- /resources/views/post/create.blade.php -->
             @if ($errors->any())
@@ -55,10 +55,10 @@
                             <td>{{ $item->created_at }}</td>
                             <td>
                                 <div class="text-center">
-                                    <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#update{{ $item->id }}">edit</button>
+                                    <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#update">edit</button>
                                     @if (auth()->user()->role == 1)
                                     @if ($item->id != auth()->user()->id)
-                                        
+
                                     <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete{{ $item->id }}">delete</button>
                                     @endif
                                     @endif
@@ -69,12 +69,12 @@
                 </tbody>
             </table>
         </div>
-        
-        
+
+
         @include('back.user.update')
+        @include('back.user.create-modal')
         @include('back.user.delete')
         <!-- Modal Create-->
-        @include('back.user.create-modal')   
         <!-- Modal Update-->
         <!-- Modal Delete-->
 
